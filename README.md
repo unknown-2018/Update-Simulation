@@ -17,5 +17,5 @@ Update Simulation for the protocol proposed in:  https://ieeexplore.ieee.org/abs
     ./test
     
     ```
-* In the above, "homeDirectory" should be replaced with the name of the machine home  directory. 
+* In the above, "homeDirectory" should be replaced with the name of your machine home directory. 
     
