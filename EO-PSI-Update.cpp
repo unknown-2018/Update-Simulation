@@ -126,7 +126,7 @@ bigint* interpolate(int size, bigint* a, bigint* b, bigint N){
 	}
 //**********************************************************************
 // - Function description: unblids all blinded y-coordinates.
-//   Also, it generates new blinding factors that will be used in step (4) above.
+//   Also, it generates new blinding factors that will be used in step (4).
 
 bigint** unblind(bigint** elem, bigint seed_, int table_size, int xpoint_size, bigint pubmoduli, bigint**& unbl_, int pub_moduli_bitsize){
 	// generates fresh seeds.
@@ -169,30 +169,30 @@ bigint** unblind(bigint** elem, bigint seed_, int table_size, int xpoint_size, b
 	unbl_ = unbl;
 	return new_blf;
 }
-	//**********************************************************************
-	// - Function description: given an element, it determines its bin's index in the hash table.
+//**********************************************************************
+// - Function description: given an element, it determines its bin's index in the hash table.
 
-	int gen_binIndx(bigint elem, int table_size){
-
-		bigint b, zz;
-		mpz_init(zz);
-		mpz_set_ui(zz, table_size);
-		string s_val;
-		CryptoPP::SHA512 hash2;
-	 	s_val = mpz_get_str(NULL, 10, elem);
-		unsigned int nDataLen = s_val.length();
-		byte  digest[CryptoPP::SHA512::DIGESTSIZE];
-		hash2.CalculateDigest(digest, (byte*)s_val.c_str(), nDataLen);
-		s_val.clear();
-		mpz_init(b);
-		mpz_import(b, sizeof(digest), 1, sizeof(digest[0]), 0, 0, digest);
-		mpz_mod(b, b, zz);
-		int j = mpz_get_ui (b);
-		return j;
-	}
-	//**********************************************************************
-	// - Function description: blinds y-coordniates of every bin in the hash table using the blinding
-	//   factors: blf that have already been generated.
+int gen_binIndx(bigint elem, int table_size){
+	
+	bigint b, zz;
+	mpz_init(zz);
+	mpz_set_ui(zz, table_size);
+	string s_val;
+	CryptoPP::SHA512 hash2;
+	 s_val = mpz_get_str(NULL, 10, elem);
+	unsigned int nDataLen = s_val.length();
+	byte  digest[CryptoPP::SHA512::DIGESTSIZE];
+	hash2.CalculateDigest(digest, (byte*)s_val.c_str(), nDataLen);
+	s_val.clear();
+	mpz_init(b);
+	mpz_import(b, sizeof(digest), 1, sizeof(digest[0]), 0, 0, digest);
+	mpz_mod(b, b, zz);
+	int j = mpz_get_ui (b);
+	return j;
+}
+//**********************************************************************
+// - Function description: blinds y-coordniates of every bin in the hash table using the blinding
+//   factors: blf that have already been generated.
 
 bigint** blind_poly(bigint** elem, bigint** blf, int table_size, int xpoint_size, bigint pubmoduli){
 
