@@ -10,7 +10,7 @@
 		(3) reencodes the elements of the bin.
 		(4) re-blinds the entire dataset.
 
-	- To simulate the update, a set of random bigintegers are generated and
+- To simulate the update, a set of random bigintegers are generated and
 		then the above operations are carried out sequentially on the set.
 */
 //**********************************************************************
@@ -64,55 +64,55 @@ bigint* findroots(bigint *coeff, int coeff_size, int& number_of_roots, bigint pu
 	//   a polynomial and returns an array containing the polynomial's coefficients.
 
 bigint* interpolate(int size, bigint* a, bigint* b, bigint N){
-
-	 long m = size;
-   bigint* prod;
-	 prod = (mpz_t*)malloc(size * sizeof(mpz_t));
+	
+	long m = size;
+	bigint* prod;
+	prod = (mpz_t*)malloc(size * sizeof(mpz_t));
 	 for(int i = 0; i < size; i++){
 		 mpz_init_set(prod[i], a[i]);
 	 }
-   bigint t1, t2;
-   mpz_init(t1);
-   mpz_init(t2);
-   int k, i;
-   bigint* res;
-	 res = (mpz_t*)malloc(size * sizeof(mpz_t));
-	 bigint aa;
-	 for (k = 0; k < m; k++){
-		 mpz_init_set(aa, a[k]);
-		 mpz_init_set_str(t1, "1", 10);
-		 for (i = k - 1; i >= 0; i--){
-			 mpz_mul(t1, t1, aa);
-			 mpz_mod(t1, t1, N);
-			 mpz_add(t1, t1, prod[i]);
-		 }
-		 mpz_init_set_str(t2, "0", 10);
-		 for (i = k - 1; i >= 0; i--){
-			 mpz_mul(t2, t2, aa);
-			 mpz_mod(t2, t2, N);
-			 mpz_add(t2, t2, res[i]);
-		 }
-		 mpz_invert(t1, t1, N);
-		 mpz_sub(t2, b[k], t2);
-		 mpz_mul(t1, t1, t2);
-		 for (i = 0; i < k; i++){
-			 mpz_mul(t2, prod[i], t1);
-			 mpz_mod(t2, t2, N);
-			 mpz_add(res[i], res[i], t2);
-			 mpz_mod(res[i], res[i], N);
-		 }
-		 mpz_init_set(res[k], t1);
-		 mpz_mod(res[k], res[k], N);
-		 if (k < m - 1){
-			 if (k == 0)
-			 	mpz_neg(prod[0], prod[0]);
+	bigint t1, t2;
+	mpz_init(t1);
+	mpz_init(t2);
+	int k, i;
+	bigint* res;
+	res = (mpz_t*)malloc(size * sizeof(mpz_t));
+	bigint aa;
+	for (k = 0; k < m; k++){
+		mpz_init_set(aa, a[k]);
+		mpz_init_set_str(t1, "1", 10);
+		for (i = k - 1; i >= 0; i--){
+			mpz_mul(t1, t1, aa);
+			mpz_mod(t1, t1, N);
+			mpz_add(t1, t1, prod[i]);
+		}
+		mpz_init_set_str(t2, "0", 10);
+		for (i = k - 1; i >= 0; i--){
+			mpz_mul(t2, t2, aa);
+			mpz_mod(t2, t2, N);
+			mpz_add(t2, t2, res[i]);
+		}
+		mpz_invert(t1, t1, N);
+		mpz_sub(t2, b[k], t2);
+		mpz_mul(t1, t1, t2);
+		for (i = 0; i < k; i++){
+			mpz_mul(t2, prod[i], t1);
+			mpz_mod(t2, t2, N);
+			mpz_add(res[i], res[i], t2);
+			mpz_mod(res[i], res[i], N);
+		}
+		mpz_init_set(res[k], t1);
+		mpz_mod(res[k], res[k], N);
+		if (k < m - 1){
+			if (k == 0)
+				mpz_neg(prod[0], prod[0]);
 				else {
 					mpz_neg(t1, a[k]);
-          mpz_add(prod[k], t1, prod[k - 1]);
+					mpz_add(prod[k], t1, prod[k - 1]);
 					for (i = k - 1; i >= 1; i--) {
 						mpz_mul(t2, prod[i], t1);
 						mpz_mod(t2, t2, N);
-            mpz_add(prod[i], t2, prod[i - 1]);
+						mpz_add(prod[i], t2, prod[i - 1]);
 					}
 					mpz_mul(prod[0], prod[0], t1);
 					mpz_mod(prod[0], prod[0], N);
@@ -175,7 +175,7 @@ bigint** unblind(bigint** elem, bigint seed_, int table_size, int xpoint_size, b
 	int gen_binIndx(bigint elem, int table_size){
 
 		bigint b, zz;
-	  mpz_init(zz);
+		mpz_init(zz);
 		mpz_set_ui(zz, table_size);
 		string s_val;
 		CryptoPP::SHA512 hash2;
@@ -184,11 +184,11 @@ bigint** unblind(bigint** elem, bigint seed_, int table_size, int xpoint_size, b
 		byte  digest[CryptoPP::SHA512::DIGESTSIZE];
 		hash2.CalculateDigest(digest, (byte*)s_val.c_str(), nDataLen);
 		s_val.clear();
-	  mpz_init(b);
+		mpz_init(b);
 		mpz_import(b, sizeof(digest), 1, sizeof(digest[0]), 0, 0, digest);
 		mpz_mod(b, b, zz);
 		int j = mpz_get_ui (b);
-	  return j;
+		return j;
 	}
 	//**********************************************************************
 	// - Function description: blinds y-coordniates of every bin in the hash table using the blinding
