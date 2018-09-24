@@ -11,7 +11,7 @@ Update Simulation for the protocol proposed in:  https://ieeexplore.ieee.org/abs
 * First, clone the above libraries, and the Update-Simulation file. Then, install the libraries and unzip the Update-Simulation file. Next:
 
     ```
-    cd Update-Simulation
+    cd Update-Simulation-master
     g++  -c  Rand.cpp -c Hashtable.cpp -c Polynomial.cpp 
     g++  -I$home/homeDirectory/include Rand.o Hashtable.o Polynomial.o EO-PSI-Update.cpp  -o test  -lntl -lgmpxx -lgmp -lcryptopp
     ./test
