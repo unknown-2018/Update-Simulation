@@ -217,7 +217,7 @@ int main(){
 	int NoElem_in_bucket = 100;
 	mpz_init_set_str(elm, "10", 10);
 	mpz_init_set_str(minus_one, "-1", 10);
-	int table_size = 2048;
+	int table_size = 30; // table_size can be set to any of the following values : 30, 61, 122, 245, 491, 983, 2621, 5242, 10485, 20971, 41943
 	int xpoint_size = 201;
 	int number_of_roots = 0;
 	int pub_moduli_bitsize = 100;
@@ -230,7 +230,7 @@ int main(){
 	cout<<"\n\nTable_size:"<<table_size<<endl;
 	cout<<"\n\nField size:"<<pub_moduli_bitsize<<endl;
 	cout<<"\n=============="<<endl;
-	int number_of_experiments = 3;
+	int number_of_experiments = 100;
 	double temp = 0;
 	// generates a set of random bigintegers.
 	// the total number of set elements is equals the total numner of elements is a hash table.
