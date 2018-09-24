@@ -8,7 +8,7 @@ Update Simulation for the protocol proposed in:  https://ieeexplore.ieee.org/abs
  
 
 # Runnig a Test
-* First, clone the above libraries, and the Update-Simulation file. Then, install the libraries and unzip the Update-Simulation file. Next:
+* First, clone the above libraries, and the Update-Simulation file. Then, install the libraries and unzip the Update-Simulation file. After that:
 
     ```
     cd Update-Simulation-master
