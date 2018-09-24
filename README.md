@@ -13,7 +13,7 @@ Update Simulation for the protocol proposed in:  https://ieeexplore.ieee.org/abs
     ```
     cd Update-Simulation
     g++  -c  Rand.cpp -c Hashtable.cpp -c Polynomial.cpp 
-    g++  -I$home/homeDirectory/include Rand.o Hashtable.o Polynomial.o test.cpp  -o test  -lntl -lgmpxx -lgmp -lcryptopp
+    g++  -I$home/homeDirectory/include Rand.o Hashtable.o Polynomial.o EO-PSI-Update.cpp  -o test  -lntl -lgmpxx -lgmp -lcryptopp
     ./test
     
     ```
