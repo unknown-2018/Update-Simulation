@@ -59,9 +59,9 @@ bigint* findroots(bigint *coeff, int coeff_size, int& number_of_roots, bigint pu
 			number_of_roots = counter_roots;
 			return res;
 	}
-	//**********************************************************************
-	// - Function description: given an array of x-coordinates: a and array of y-coordinates: b, it interpolates
-	//   a polynomial and returns an array containing the polynomial's coefficients.
+//**********************************************************************
+// - Function description: given an array of x-coordinates: a and array of y-coordinates: b, it interpolates
+//   a polynomial and returns an array containing the polynomial's coefficients.
 
 bigint* interpolate(int size, bigint* a, bigint* b, bigint N){
 	
