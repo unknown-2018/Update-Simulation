@@ -126,7 +126,7 @@ bigint* interpolate(int size, bigint* a, bigint* b, bigint N){
 	}
 //**********************************************************************
 // - Function description: unblids all blinded y-coordinates.
-//   Also, it generates new blinding factors that will be used step (4).
+//   Also, it generates new blinding factors that will be used in step (4) above.
 
 bigint** unblind(bigint** elem, bigint seed_, int table_size, int xpoint_size, bigint pubmoduli, bigint**& unbl_, int pub_moduli_bitsize){
 	// generates fresh seeds.
