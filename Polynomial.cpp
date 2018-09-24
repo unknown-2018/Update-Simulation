@@ -123,21 +123,20 @@ bigint* Polynomial:: evaluate_coeffs(bigint* coeff, bigint* x_points, int coeff_
 // a polynomial and returns an array containing the polynomial's coefficients.
 
 bigint* Polynomial::interpolate(int size, bigint* a, bigint* b, bigint N){
-
-   long m = size;
-   bigint* prod;
-	 prod = (mpz_t*)malloc(size * sizeof(mpz_t));
+	long m = size;
+	bigint* prod;
+	prod = (mpz_t*)malloc(size * sizeof(mpz_t));
 	 for(int i = 0; i < size; i++){
 		 mpz_init_set(prod[i], a[i]);
 	 }
 	 bigint t1, t2;
-   mpz_init(t1);
-   mpz_init(t2);
-   int k, i;
-   bigint* res;
-   res = (mpz_t*)malloc(size * sizeof(mpz_t));
-	 bigint aa;
-   for (k = 0; k < m; k++) {
+	mpz_init(t1);
+	mpz_init(t2);
+	int k, i;
+	bigint* res;
+	res = (mpz_t*)malloc(size * sizeof(mpz_t));
+	bigint aa;
+	for (k = 0; k < m; k++) {
 		 mpz_init_set(aa , a[k]);
 		 mpz_init_set_str(t1, "1", 10);
 		 for (i = k-1; i >= 0; i--) {
