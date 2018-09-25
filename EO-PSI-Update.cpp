@@ -5,7 +5,7 @@
    https://ieeexplore.ieee.org/abstract/document/7934388/
 
 - More specifically, a client takes the following steps:
-    (1) unblinds its entire outsourced data
+                (1) unblinds its entire outsourced data
 		(2) updates a bin.
 		(3) reencodes the elements of the bin.
 		(4) re-blinds the entire dataset.
