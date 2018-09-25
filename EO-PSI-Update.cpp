@@ -5,13 +5,13 @@
    https://ieeexplore.ieee.org/abstract/document/7934388/
 
 - More specifically, a client takes the following steps:
-                (1) unblinds its entire outsourced data
+               (1) unblinds its entire outsourced data
 		(2) updates a bin.
 		(3) reencodes the elements of the bin.
 		(4) re-blinds the entire dataset.
 
 - To simulate the update, a set of random bigintegers are generated and
-		then the above operations are carried out sequentially on the set.
+then the above operations are carried out sequentially on the set.
 */
 //**********************************************************************
 
@@ -30,7 +30,7 @@ bigint* findroots(bigint *coeff, int coeff_size, int& number_of_roots, bigint pu
 	ZZ_p::init(p);
 	ZZ_pX P;
 	ZZ one(1);
-	//find the roots
+	// finds the roots.
 	for(int j = 0; j < coeff_size; j++){
 		char * tmp = mpz_get_str(NULL, 10, coeff[j]);
 		ZZ_p dd = to_ZZ_p(conv<ZZ> (tmp));
@@ -248,9 +248,9 @@ int main(){
 		double start1 = clock();
 		bigint** unblinded = unblind(elem, seed, table_size, xpoint_size, pubmoduli[0], blf, pub_moduli_bitsize); // unblinds the set elements.
 		int inx = gen_binIndx(elm, table_size); // determines the index of the hashtable bin that will be updated.
-		bigint* coeff = interpolate(xpoint_size, xpoints,unblinded[inx], pubmoduli[0]); // given x and y coordinates, interpolate a polynomial.
-		bigint* roots = findroots(coeff, xpoint_size, number_of_roots, pubmoduli[0]); // find roots of the polynomial interpolated.
-		// insert a new element and put back old set elements into the bin. Also, it padds the bin if needed.
+		bigint* coeff = interpolate(xpoint_size, xpoints,unblinded[inx], pubmoduli[0]); // given x and y coordinates, interpolates a polynomial.
+		bigint* roots = findroots(coeff, xpoint_size, number_of_roots, pubmoduli[0]); // finds roots of the polynomial interpolated.
+		// inserts a new element and put back old set elements into the bin. Also, it padds the bin if needed.
 		bigint* padded_bin;
 		padded_bin = (mpz_t*)malloc(NoElem_in_bucket * sizeof(mpz_t));
 		mpz_init_set(padded_bin[0], elm);
@@ -264,7 +264,7 @@ int main(){
 		}
 	Polynomial pol(padded_bin, outpoly_ID, xpoints, NoElem_in_bucket, xpoint_size, pubmoduli[0]); // constructs a poly representing the bin elements.
 	unblinded[inx] = pol.values;
-	bigint **updated_set = blind_poly(unblinded, blf, table_size, xpoint_size,pubmoduli[0]); 	// blindes all unblided polynomials in the hash table.
+	bigint **updated_set = blind_poly(unblinded, blf, table_size, xpoint_size,pubmoduli[0]); // blindes all unblided polynomials in the hash table.
 	double end1 = clock();
 	temp += end1 - start1;
 	}
