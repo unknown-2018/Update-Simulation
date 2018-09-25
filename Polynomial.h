@@ -30,7 +30,7 @@ public:
 	void  blind_poly (bigint , bigint, int);
 	void set_values(bigint* vals, int size);
 	string get_poly_ID(){return poly_ID;}
-	//variables
+	// variables
 	bigint* values;
 	string  poly_ID;
 	int val_size;
